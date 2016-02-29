@@ -66,7 +66,13 @@ module.exports = {
       templateCompilerPath = this.project.bowerDirectory + '/ember/ember-template-compiler';
     }
 
-    return path.resolve(this.project.root, templateCompilerPath);
+    var absolutePath = path.resolve(this.project.root, templateCompilerPath);
+
+    if (path.extname(absolutePath) === '') {
+      absolutePath += '.js';
+    }
+
+    return absolutePath;
   },
 
   htmlbarsOptions: function() {
